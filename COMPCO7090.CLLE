@@ -1,0 +1,209 @@
+000100220120             PGM
+000300220120             DCL        VAR(&LIBNAM) TYPE(*CHAR) LEN(10) +
+000400220120                        VALUE('BACUSRLIB')
+000500211025             DCL        VAR(&LIBOBJ) TYPE(*CHAR) LEN(10) +
+000600220120                        VALUE('BACUSRLIB')
+000700200422             DCL        VAR(&BACNM) TYPE(*CHAR) LEN(8)
+000800200422
+000900200422             RTVNETA    SYSNAME(&BACNM)
+001000200422             IF         COND(&BACNM *EQ 'BAC03') THEN(CHGVAR +
+001100220120                        VAR(&LIBNAM) VALUE('BACDEVLIB'))
+001200200422
+001300200422             ADDLIBLE   LIB(QMQM)
+001400200422             MONMSG     MSGID(CPF2103)
+001500200422
+001600211023         /* Programas Auxiliares para la conversion de Caracteres*/
+001700211023
+001800211023
+001801220113         /* Programas de Servicio................................*/
+001802220113             DLTMOD     MODULE(&LIBOBJ/CO517091PG)
+001809220113             MONMSG     MSGID(CPF0000)
+001810220113             DLTSRVPGM  SRVPGM(&LIBOBJ/CO517091PG)
+001811220113             MONMSG     MSGID(CPF0000)
+001812220113
+001813220113             DLTMOD     MODULE(&LIBOBJ/CO517096PG)
+001814220113             MONMSG     MSGID(CPF0000)
+001815220113             DLTSRVPGM  SRVPGM(&LIBOBJ/CO517096PG)
+001816220113             MONMSG     MSGID(CPF0000)
+001817220113
+001819220113
+001820220113         /* Programas RPGLE................................*/
+001900220113             DLTF       FILE(&LIBOBJ/CO517090FM)
+002000211023             MONMSG     MSGID(CPF0000)
+002001220113             DLTMOD     MODULE(&LIBOBJ/CO517090PG)
+002002220113             MONMSG     MSGID(CPF0000)
+002100220113             DLTPGM     PGM(&LIBOBJ/CO517090PG)
+002101220120             MONMSG     MSGID(CPF0000)
+002102220113
+002103220113             DLTF       FILE(&LIBOBJ/CO517095FM)
+002104220113             MONMSG     MSGID(CPF0000)
+002105220113             DLTMOD     MODULE(&LIBOBJ/CO517095PG)
+002106220113             MONMSG     MSGID(CPF0000)
+002107220113             DLTPGM     PGM(&LIBOBJ/CO517095PG)
+002108220113             MONMSG     MSGID(CPF0000)
+002109220120         /* CL             ................................*/
+002110220120             DLTPGM     PGM(&LIBOBJ/CL51007098)
+002111220120             MONMSG     MSGID(CPF0000)
+002112220120             DLTPGM     PGM(&LIBOBJ/CL51007099)
+002113220120             MONMSG     MSGID(CPF0000)
+002114220120             DLTPGM     PGM(&LIBOBJ/CL51007090)
+002115220120             MONMSG     MSGID(CPF0000)
+002117220120
+002118220120         /* Menu Para Custodios ...........................*/
+002700211023
+002701220120             DLTF       FILE(&LIBOBJ/OMNIM1)
+002702220120             MONMSG     MSGID(CPF0000)
+002800220120             DLTMNU     MENU(&LIBOBJ/OMNIM1)
+002801220120             MONMSG     MSGID(CPF0000)
+002802220120             DLTMSGF    MSGF(&LIBOBJ/OMNIM1)
+002803220120             MONMSG     MSGID(CPF0000)
+002808220120
+002900211023         /* Programas Auxiliares para la conversion de Caracteres*/
+002901220113
+002902220121             CHKOBJ     OBJ(BACCYFILES/PFDTAKEY) OBJTYPE(*FILE)
+002903220121             MONMSG     MSGID(CPF9801) EXEC(CRTPF +
+002904220121                          FILE(BACCYFILES/PFDTAKEY) +
+002905220121                          SRCFILE(&LIBNAM/QDDSSRC) SRCMBR(PFDTAKEY) +
+002906220121                          REUSEDLT(*YES))
+002908220113
+003006220113
+003007220120             CRTRPGMOD  MODULE(&LIBOBJ/CO517091PG) +
+003009220120             SRCFILE(&LIBNAM/QRPGSRC)              +
+003010220120             SRCMBR(CO517091PG)                    +
+003011220120             DBGVIEW(*SOURCE)                      +
+003012220120             REPLACE(*YES)                         +
+003013220113             AUT(*ALL)
+003018220113
+003019220120             CRTSRVPGM  SRVPGM(&LIBOBJ/CO517091PG) +
+003020220120             MODULE(&LIBOBJ/CO517091PG)            +
+003021220113             EXPORT(*ALL)
+003100211023
+003102220120             CRTRPGMOD  MODULE(&LIBOBJ/CO517096PG) +
+003103220120             SRCFILE(&LIBNAM/QRPGSRC)              +
+003104220120             SRCMBR(CO517096PG)                    +
+003105220120             DBGVIEW(*SOURCE)                      +
+003106220120             REPLACE(*YES)                         +
+003107220113             AUT(*ALL)
+003108220113
+003109220120             CRTSRVPGM  SRVPGM(&LIBOBJ/CO517096PG) +
+003110220120             MODULE(&LIBOBJ/CO517096PG)            +
+003111220113             EXPORT(*ALL)
+003200211023
+003201220113
+003202220120             CRTDSPF    FILE(&LIBOBJ/CO517090FM)   +
+003203220120             SRCFILE(&LIBNAM/QDDSSRC)              +
+003204220120             SRCMBR(CO517090FM)                    +
+003205220120             OPTION(*SOURCE)                       +
+003206220120             RSTDSP(*YES)                          +
+003207220120             AUT(*ALL)                             +
+003208220113             REPLACE(*YES)
+003209220113
+003210220120             CRTRPGMOD  MODULE(&LIBOBJ/CO517090PG) +
+003211220120             SRCFILE(&LIBNAM/QRPGSRC)              +
+003212220120             SRCMBR(CO517090PG)                    +
+003213220120             DBGVIEW(*SOURCE)                      +
+003214220120             REPLACE(*YES)                         +
+003215220113             AUT(*ALL)
+003216220113
+003217220120             CRTPGM  PGM(&LIBOBJ/CO517090PG)       +
+003218220120             MODULE(&LIBOBJ/CO517090PG BYPUTMSG)   +
+003219220120             ENTMOD(*PGM)                          +
+003220220120             BNDSRVPGM((QMQM/LIBMQM) (&LIBOBJ/CO517091PG) +
+003221220113             (&LIBOBJ/CO517096PG))
+003222220113
+003223220113
+003224220120             CRTDSPF    FILE(&LIBOBJ/CO517095FM)   +
+003225220120             SRCFILE(&LIBNAM/QDDSSRC)              +
+003226220120             SRCMBR(CO517095FM)                    +
+003227220120             OPTION(*SOURCE)                       +
+003228220120             RSTDSP(*YES)                          +
+003229220120             AUT(*ALL)                             +
+003230220113             REPLACE(*YES)
+003231220113
+003232220120             CRTRPGMOD  MODULE(&LIBOBJ/CO517095PG) +
+003233220120             SRCFILE(&LIBNAM/QRPGSRC)              +
+003234220120             SRCMBR(CO517095PG)                    +
+003235220120             DBGVIEW(*SOURCE)                      +
+003236220120             REPLACE(*YES)                         +
+003237220113             AUT(*ALL)
+003238220113
+003239220120             CRTPGM     PGM(&LIBOBJ/CO517095PG)    +
+003240220120             MODULE(&LIBOBJ/CO517090PG BYPUTMSG)   +
+003241220120             ENTMOD(*PGM)                          +
+003242220120             BNDSRVPGM((QMQM/LIBMQM) (&LIBOBJ/CO517091PG) +
+003243220113             (&LIBOBJ/CO517096PG))
+003244220113
+003245220120
+003248220120
+003249220120             CRTDSPF    FILE(&LIBOBJ/OMNIM1) +
+003250220120             SRCFILE(&LIBNAM/QDDSSRC) +
+003251220120             SRCMBR(OMNIM1)           +
+003252220120             OPTION(*SOURCE)          +
+003253220120             RSTDSP(*YES)             +
+003254220120             AUT(*ALL)                +
+003255220120             REPLACE(*YES)
+003256220120
+003257220120         /* Menu Creation and Options Adition ..................*/
+003258220120
+003259220120             CRTMSGF    MSGF(&LIBOBJ/OMNIM1)
+003260220120             MONMSG     MSGID(CPF0000)
+003261220120
+003262220120             CRTMNU     MENU(&LIBOBJ/OMNIM1) TYPE(*DSPF)
+003264220120
+003271220120             ADDMSGD    MSGID(USR0001) MSGF(&LIBOBJ/OMNIM1) +
+003272220120                        MSG('CALL PGM(*LIBL/CO517090PG)') +
+003273220120                        SECLVL('1.Porcion 01 de la llave de Cifrado')
+003274220120             ADDMSGD    MSGID(USR0002) MSGF(&LIBOBJ/OMNIM1) +
+003275220120                        MSG('CALL PGM(*LIBL/CO517095PG)') +
+003276220120                        SECLVL('2.Porcion 02 de la llave de Cifrado')
+003277220120             ADDMSGD    MSGID(USR0090) MSGF(&LIBOBJ/OMNIM1) +
+003278220120                        MSG('signoff') +
+003279220120                        SECLVL('90.Salir del Sistema')
+003280220120
+003281220120      /* Enviroment - Set                          */
+003282220120             CRTBNDCL PGM(&LIBOBJ/CL51007098)  +
+003283220120                      SRCFILE(&LIBNAM/QCLSRC)   +
+003284220120                      SRCMBR(CL51007098)         +
+003285220120                      REPLACE(*YES)              +
+003286220120                      AUT(*ALL)                  +
+003287220120                      DBGVIEW(*SOURCE)
+003288220120
+003289220120      /* Enviroment - Set                          */
+003290220120             CRTBNDCL PGM(&LIBOBJ/CL51007099)  +
+003291220120                      SRCFILE(&LIBNAM/QCLSRC)   +
+003292220120                      SRCMBR(CL51007099)         +
+003293220120                      REPLACE(*YES)              +
+003294220120                      AUT(*ALL)                  +
+003295220120                      DBGVIEW(*SOURCE)
+003296220120
+003297220120      /* Get-CVV                                   */
+003298220120             CRTBNDCL PGM(&LIBOBJ/CL51007090)  +
+003299220120                      SRCFILE(&LIBNAM/QCLSRC)   +
+003300220120                      SRCMBR(CL51007090)         +
+003301220120                      REPLACE(*YES)              +
+003302220120                      AUT(*ALL)                  +
+003303220120                      DBGVIEW(*SOURCE)
+003304220120
+003305220120
+003306220120      /* Instalador de Servicio                    */
+003307220120             CRTBNDCL PGM(&LIBOBJ/COMP207090)  +
+003308220120                      SRCFILE(&LIBNAM/QCLSRC)    +
+003309220120                      SRCMBR(COMP207090)         +
+003310220120                      REPLACE(*YES)              +
+003311220120                      AUT(*ALL)                  +
+003312220120                      DBGVIEW(*SOURCE)
+005700050907
+005701220120
+005702220121      /*     RUNSQLSTM  SRCFILE(&LIBNAM/QDDSSRC) +             */
+005703220121      /*                  SRCMBR(SC51007090) COMMIT(*NONE) +   */
+005704220121      /*                  NAMING(*SQL) ERRLVL(40)              */
+005705220120
+005706220120
+005707220120             CALL     PGM(&LIBOBJ/COMP207090)
+005708220120
+005709220120             sndpgmmsg   msgid(CPF9898) msgf(QCPFMSG) +
+005710220120                         msgdta('Instalacion Completa............') +
+005711220120                         topgmq(*EXT) msgtype(*STATUS)
+005712220120
+005713220120
+005800200422             ENDPGM

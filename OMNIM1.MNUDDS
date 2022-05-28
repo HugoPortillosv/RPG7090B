@@ -1,0 +1,40 @@
+000001220120     A* Menú de Formato Libre: OMNIM1
+000010220120     A*%%TS  SD  20220120  000216  BACHAPOB    REL-V7R3M0  5770-WDS
+000020220120     A*%%EC
+000030220120     A                                      DSPSIZ(24 80 *DS3                  -
+000040220120     A                                             27 132 *DS4)
+000050220120     A                                      CHGINPDFT
+000060220120     A                                      INDARA
+000070220120     A                                      PRINT(*LIBL/QSYSPRT)
+000080220116     A          R OMNIM1
+000090220116     A*%%TS  SD  20220116  110535  BACHAPOB    REL-V7R3M0  5770-WDS
+000100220116     A                                      DSPMOD(*DS3)
+000110220116     A*                                     LOCK
+000120220116     A                                      SLNO(01)
+000130220116     A*                                     CLRL(*ALL)
+000140220116     A*                                     ALWROL
+000150220116     A                                      CF03
+000160220116     A                                      HELP
+000170220116     A                                      HOME
+000180220116     A                                      HLPRTN
+000190220116     A                                  1 38'OMNIM1'
+000200220116     A                                      COLOR(BLU)
+000210220116     A                                      DSPATR(RI)
+000220220116     A* CMDPROMPT  No suprima esta especificación DDS.
+000230220116     A                                019  2'Selección o mandato               -
+000240220116     A                                          '
+000250220116     A                                  1 73DATE
+000260220116     A                                      EDTCDE(Y)
+000270220116     A                                  1  3USER
+000280220116     A                                  2 24'OMNI-INGRESO Y CIFRADO DE LLAVE DE-
+000290220116     A                                      L CANAL'
+000300220116     A                                      DSPATR(RI)
+000310220116     A                                 17  6'90.Desconectar'
+000320220116     A                                  4  6'OMNI-INGRESO DE PARTES DE LA LLAVE-
+000330220116     A                                       DE CIFRADO'
+000340220116     A                                      DSPATR(HI)
+000350220116     A                                      DSPATR(UL)
+000360220116     A                                  5  6'1.Porcion 01 de la llave de Cifrad-
+000370220116     A                                      o'
+000380220116     A                                  6  6'2.Porcion 02 de la llave de Cifrad-
+000390220116     A                                      o'

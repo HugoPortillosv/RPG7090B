@@ -1,0 +1,68 @@
+000100210226 /*********************************************************************/
+000200210527 /* BANCO AGRICOL, S.A.                    May. 26,2021               */
+000300210527 /* Infromaciion adicional en consulta de tarjetas de debito          */
+000400210527 /* Fuente   : QCLSRC/BACDEVLIB(IN51007070)                           */
+000500210527 /* Fisico   : BACUSRLIB/IN51007070                                   */
+000600210226 /* Celula   : OmniCanal Personas                                     */
+000700210226 /* Proyecto :                                                        */
+000800210527 /* Analistas: Moises Sabillon/Hugo Portillo                          */
+000900210226 /* Programdor:Hugo Portillo                                          */
+001000210226 /*********************************************************************/
+001100210226
+001200210226             PGM
+001300210226
+001400210324             dcl &nsys  *char 10
+001500210324             dcl &lib   *char 10  value('BACUSRLIB')
+001600210527             dcl &job   *char 10
+001700210527             dcl &jobq  *char 01
+001800210527             dcl &user  *char 10
+001900210527
+002000210527
+002100210527
+002200210324
+002300210324  /* Determinar Ambiente de Instalacion-------*/
+002400210324             rtvneta    sysname(&nsys)
+002500210324             if         cond(&nsys = 'BAC03') then(do)
+002600210324              chgvar     &lib value('BACDEVLIB')
+002700210324             enddo
+002800210324
+002900210527             rtvjoba    job(&job) user(&user) type(&jobq)
+003000210527
+003100210527
+003200210528            sndpgmmsg   msgid(CPF9898) msgf(QCPFMSG) +
+003300210528                        msgdta('Iniciando proceso de Instalacion') +
+003400210528                        topgmq(*EXT) msgtype(*STATUS)
+003500210528
+003600210323
+003700210527             DLTPGM PGM(BACUSRLIB/BA51007070)
+003800210323             MONMSG MSGID(CPF0000)
+003900210527             DLTMOD MODULE(BACUSRLIB/BA51007070)
+004000210323             MONMSG MSGID(CPF0000)
+004100210527             DLTPGM PGM(BACUSRLIB/BA51000017)
+004200210323             MONMSG MSGID(CPF0000)
+004300210527             DLTMOD MODULE(BACUSRLIB/BA51000017)
+004400210323             MONMSG MSGID(CPF0000)
+004500210323
+004600210528            sndpgmmsg   msgid(CPF9898) msgf(QCPFMSG) +
+004700210528                        msgdta('Compilando Servicios............') +
+004800210528                        topgmq(*EXT) msgtype(*STATUS)
+004900210323
+005000210527             CALL       PGM(comp2000tk) PARM('BA51007070')
+005100210527             CALL       PGM(comp2000tk) PARM('BA51000017')
+005200210323
+005300210323
+005400210323   /* Agregar SQLSTM, para la Insercion de los datos en Tablas.*/
+005500210323
+005600210528            sndpgmmsg   msgid(CPF9898) msgf(QCPFMSG) +
+005700210528                        msgdta('Ejecutando Scritp Servicios.....') +
+005800210528                        topgmq(*EXT) msgtype(*STATUS)
+005900210528
+006000220120             RUNSQLSTM  SRCFILE(&LIB/QDDSSRC) SRCMBR(SC51007090) +
+006100210527                        COMMIT(*NONE) NAMING(*SQL) ERRLVL(40)
+006200210528
+006300210528
+006400210528            sndpgmmsg   msgid(CPF9898) msgf(QCPFMSG) +
+006500210528                        msgdta('Instalacion Completa............') +
+006600210528                        topgmq(*EXT) msgtype(*STATUS)
+006700210325
+006800210226             ENDPGM

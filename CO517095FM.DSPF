@@ -1,0 +1,69 @@
+000010220119     A*%%TS  SD  20220119  003709  BACHAPOB    REL-V7R3M0  5770-WDS
+000020220119     A*%%EC
+000030220119     A                                      DSPSIZ(24 80 *DS3)
+000040220119     A                                      INDARA
+000050220119     A                                      ENTFLDATR((*DSPATR HI))
+000060220119     A          R SRC01
+000070220119     A*%%TS  SD  20220119  003709  BACHAPOB    REL-V7R3M0  5770-WDS
+000080220119     A                                      CF01(01 'procesar')
+000090220119     A                                      CF03(03 'salir')
+000100220119     A                                      CF05(05 'Visualizar')
+000110220119     A                                      CF08(08 'Generar')
+000120220119     A                                      ENTFLDATR((*COLOR BLU) (*DSPATR RI))
+000130220119     A                                      PUTOVR
+000140220119     A                                      OVRATR
+000150220119     A                                  2  2'Usuario :'
+000160220119     A                                      COLOR(WHT)
+000170220119     A                                  3  2'Estacion:'
+000180220119     A                                      COLOR(WHT)
+000190220119     A                                  2 12USER
+000200220119     A                                      COLOR(YLW)
+000210220119     A            NOMBRE_PGM    10A  O  3 12COLOR(YLW)
+000220220119     A                                  2 31'BANCO AGRICOLA, S.A.'
+000230220119     A                                      COLOR(WHT)
+000240220119     A                                  3 25'Ingreso de Llave para Cifrado  '
+000250220119     A                                      COLOR(BLU)
+000260220119     A                                      DSPATR(RI)
+000270220119     A                                  2 62'Fecha:'
+000280220119     A                                      COLOR(WHT)
+000290220119     A                                  3 62'Hora :'
+000300220119     A                                      COLOR(WHT)
+000310220119     A                                  2 72DATE
+000320220119     A                                      EDTCDE(Y)
+000330220119     A                                      COLOR(YLW)
+000340220119     A                                  3 72TIME
+000350220119     A                                      COLOR(YLW)
+000360220119     A                                  5  3'__________________________________-
+000370220119     A                                      ___________________________________-
+000380220119     A                                      ________'
+000390220119     A                                      COLOR(BLU)
+000400220119     A                                  8  3'Clave 2 (8 Caracters)..:'
+000410220119     A                                      COLOR(WHT)
+000420220119     A            WCLAVE02       8A  B  8 30DSPATR(&FDATR)
+000430220119     A                                      OVRATR
+000440220119     A                                      OVRDTA
+000450220119     A  40                                  DSPATR(ND)
+000460220119     A                                      CHECK(LC)
+000470220119     A                                 22  3'__________________________________-
+000480220119     A                                      ___________________________________-
+000490220119     A                                      ________'
+000500220119     A                                      COLOR(BLU)
+000510220119     A            KEYSEC        64A  O 10  3OVRDTA
+000520220119     A                                      DSPATR(&FDATR2)
+000530220119     A                                  9  3'Llave Cifrada para Datos en el Can-
+000540220119     A                                      al----------------------------'
+000550220119     A                                      DSPATR(&FDATR3)
+000560220119     A                                  6  3'Llave:'
+000570220119     A                                      COLOR(WHT)
+000580220119     A            KEYACT        64A  O  6 10OVRDTA
+000590220119     A                                      OVRATR
+000600220119     A            FDATR          1A  P
+000610220119     A            FDATR1         1A  P
+000620220119     A            FDATR2         1A  P
+000630220119     A            FDATR3         1A  P
+000640220119     A            MENSAJE       60A  O 21  3OVRDTA
+000650220119     A                                      DSPATR(&FDATR1)
+000660220119     A                                 23  3'Enter=Validar;F01=Aceptar;F03=Sali-
+000670220119     A                                      r;F05=Ocultar/Mostrar-Clave;F08=Gen-
+000680220119     A                                      erar K'
+000690220119     A                                      COLOR(WHT)

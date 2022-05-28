@@ -1,0 +1,42 @@
+000010211215     A*%%TS  SD  20211215  110537  BACHAPOB    REL-V7R3M0  5770-WDS
+000020211215     A*%%EC
+000030211215     A                                      DSPSIZ(24 80 *DS3)
+000040211215     A                                      INDARA
+000050211215     A          R FMCAPTURA
+000060211215     A*%%TS  SD  20211215  110537  BACHAPOB    REL-V7R3M0  5770-WDS
+000070211215     A                                      CF01(01 'procesar')
+000080211215     A                                      CF03(03 'salir')
+000090211215     A                                  2  2'Usuario :'
+000100211215     A                                  3  2'Programa:'
+000110211215     A                                  2 12USER
+000120211215     A            NOMBRE_PGM    10A  O  3 12
+000130211215     A                                  2 31'BANCO AGRICOLA, S.A.'
+000140211215     A                                  3 25'Cargo ADS sin cobro de comisión'
+000150211215     A                                      COLOR(BLU)
+000160211215     A                                      DSPATR(RI)
+000170211215     A                                  2 62'Fecha:'
+000180211215     A                                  3 62'Hora :'
+000190211215     A                                  2 72DATE
+000200211215     A                                      EDTCDE(Y)
+000210211215     A                                  3 72TIME
+000220211215     A                                  5  2'-----------------------------------
+000230211215     A                                      ------------------------------------
+000240211215     A                                      ---------'
+000250211215     A            NOMB_ARCHI    20A  B 11 36CHECK(LC)
+000260211215     A            MENSAJE       70A  O 14  6COLOR(RED)
+000270211215     A                                 21 21'F01='
+000280211215     A                                 21 26'Procesar'
+000290211215     A                                      COLOR(WHT)
+000300211215     A                                 21 53'F03='
+000310211215     A                                 21 58'Salir'
+000320211215     A                                      COLOR(WHT)
+000330211215     A                                 11 57'.csv'
+000340211215     A                                      COLOR(WHT)
+000350211215     A            CTA_CONT      16Y 0B  8 36EDTCDE(4)
+000360211215     A                                      CHECK(ER)
+000370211215     A                                 11 21'Archivo......:'
+000380211215     A                                      DSPATR(RI)
+000390211215     A                                  8 21'Cta. Contable:'
+000400211215     A                                      DSPATR(RI)
+000410211215     A            GLMDSC        35A  O  9 21DSPATR(RI)
+000420211215     A  35                                  DSPATR(ND)

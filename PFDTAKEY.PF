@@ -1,0 +1,19 @@
+000100211215      *-----------------------------------------------------------------------
+000200211215      *  OMNICANAL PERSONAS
+000300211215      *  Hecho Por: Hugo A. Portillo (HAP).
+000400211215      *  Fecha    : 2021-12-15
+000500211215      *  Descripcion:
+000600211215      *  Tabla para ingreso de llave CriptoGrafica, para cifrado de Datos del
+000700211215      *  Canal...
+000800211215      *-----------------------------------------------------------------------
+000900211215                R RCDTAKEY
+001000211215                  KEYNUM        04S00       COLHDG('Numero de Llave')
+001100211215                  CLAVE01       08A         COLHDG('Clave parte 01')
+001200211215                  CLAVE02       08A         COLHDG('Clave parte 02')
+001300211215                  KEYDATA       16A         COLHDG('Clave completa')
+001400211215                  KRIPTOK       64A         COLHDG('Clave Cifrada ')
+001500211215                  USER01        10          COLHDG('Usuario porcion 01')
+001600211215                  USER02        10          COLHDG('Usuario porcion 02')
+001700211215                  FECHA01         Z         COLHDG('Fecha   porcion 01')
+001800211215                  FECHA02         Z         COLHDG('Fecha   porcion 02')
+001900211215                K KEYNUM
